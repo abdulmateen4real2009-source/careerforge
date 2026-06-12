@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Live CV Builder - CareerForge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <h2>⚡ Live CV Builder</h2>
+        <p style="color:#9ca3af;">Type on the left, see CV update instantly on the right</p>
+
+        <div class="live-grid">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <input id="name" placeholder="Full Name">
+                <textarea id="bio" placeholder="Bio"></textarea>
+                <textarea id="skills" placeholder="Skills"></textarea>
+                <textarea id="projects" placeholder="Projects"></textarea>
+
+                <button onclick="analyzeCV()">🤖 Improve CV with AI</button>
+
+            </div>
+
+            <!-- PREVIEW PANEL -->
+            <div class="cv-preview">
+
+                <h1 id="p_name">Your Name</h1>
+                <p id="p_bio"></p>
+
+                <h3>Skills</h3>
+                <p id="p_skills"></p>
+
+                <h3>Projects</h3>
+                <p id="p_projects"></p>
+
+                <hr>
+
+                <h3>🤖 AI Assistant</h3>
+                <div id="ai_result" style="color:#9ca3af;"></div>
+
+            </div>
+
+        </div>
+
+        <script>
+
+            function bind(inputId, previewId) {
+                document.getElementById(inputId).addEventListener("input", function () {
+                    document.getElementById(previewId).innerText = this.value;
+                });
+            }
+
+            bind("name", "p_name");
+            bind("bio", "p_bio");
+            bind("skills", "p_skills");
+            bind("projects", "p_projects");
+
+            async function analyzeCV() {
+
+                const text = `
+Name: ${document.getElementById("name").value}
+Bio: ${document.getElementById("bio").value}
+Skills: ${document.getElementById("skills").value}
+Projects: ${document.getElementById("projects").value}
+    `;
+
+                const formData = new FormData();
+                formData.append("text", text);
+                formData.append("section", "full_cv");
+
+                const res = await fetch("/ai/live-assist", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                document.getElementById("ai_result").innerText = data.result;
+            }
+
+        </script>
+</body>
+
+</html>

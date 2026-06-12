@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CareerForge - CV Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <h1>Create Your Professional CV</h1>
+        <p style="color:#9ca3af; margin-bottom:20px;">
+            Fill in your details below to generate your CV and portfolio
+        </p>
+
+        <form action="/create" method="POST">
+
+            <!-- IDENTITY -->
+            <h3 style="color:#3b82f6;">Basic Info</h3>
+
+            <input type="text" name="username" placeholder="Choose Username (e.g. john-doe)" required>
+            <input type="text" name="full_name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="phone" placeholder="Phone">
+            <input type="text" name="location" placeholder="Location">
+
+            <!-- ABOUT -->
+            <h3 style="color:#3b82f6;">About You</h3>
+
+            <textarea name="bio" placeholder="Write a short professional summary..."></textarea>
+
+            <!-- EXPERIENCE -->
+            <h3 style="color:#3b82f6;">Experience & Education</h3>
+
+            <textarea name="education" placeholder="Education background"></textarea>
+
+            <!-- SKILLS -->
+            <h3 style="color:#3b82f6;">Skills</h3>
+
+            <textarea name="skills" placeholder="e.g. Python, Flask, UI Design, Networking..."></textarea>
+
+            <!-- PROJECTS -->
+            <h3 style="color:#3b82f6;">Projects</h3>
+
+            <textarea name="projects" placeholder="Describe your projects..."></textarea>
+
+            <!-- LINKS -->
+            <h3 style="color:#3b82f6;">Links</h3>
+
+            <input type="text" name="github" placeholder="GitHub Profile">
+            <input type="text" name="linkedin" placeholder="LinkedIn Profile">
+
+            <button type="submit">Generate CV</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

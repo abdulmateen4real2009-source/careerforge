@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ resume.full_name }} - Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="portfolio">
+
+        <!-- HERO SECTION -->
+        <div class="hero">
+
+            <div class="avatar">
+                {{ resume.full_name[0] }}
+            </div>
+
+            <div>
+                <h1>{{ resume.full_name }}</h1>
+
+                <p style="color:#9ca3af; margin-top:5px;">
+                    {{ resume.bio }}
+                </p>
+
+                <div style="margin-top:10px; color:#9ca3af; font-size:14px;">
+                    <span>{{ resume.email }}</span> •
+                    <span>{{ resume.phone }}</span> •
+                    <span>{{ resume.location }}</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- GRID SECTION -->
+        <div class="grid">
+
+            <div class="card">
+                <h2>About Me</h2>
+                <p>{{ resume.bio }}</p>
+            </div>
+
+            <div class="card">
+                <h2>Skills</h2>
+                <p>{{ resume.skills }}</p>
+            </div>
+
+            <div class="card">
+                <h2>Education</h2>
+                <p>{{ resume.education }}</p>
+            </div>
+
+            <div class="card">
+                <h2>Projects</h2>
+                <p>{{ resume.projects }}</p>
+            </div>
+
+            <div class="card">
+                <h2>Links</h2>
+
+                <p>
+                    GitHub:<br>
+                    <a href="{{ resume.github }}" target="_blank">
+                        {{ resume.github }}
+                    </a>
+                </p>
+
+                <p style="margin-top:10px;">
+                    LinkedIn:<br>
+                    <a href="{{ resume.linkedin }}" target="_blank">
+                        {{ resume.linkedin }}
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CTA SECTION -->
+        <div style="margin-top:30px; display:flex; gap:10px;">
+
+            <a href="/download/{{ resume.id }}">
+                <button>Download CV (PDF)</button>
+            </a>
+
+            <a href="/preview/{{ resume.id }}">
+                <button>View Full CV</button>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
